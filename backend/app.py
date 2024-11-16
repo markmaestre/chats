@@ -24,8 +24,6 @@ if os.getenv('FLASK_ENV') == 'production':
 else:
     app.config.from_object('settings.DevelopmentConfig')
 
-
-app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 CORS(app, origins=["http://localhost:3000"])
 
@@ -302,4 +300,4 @@ else:
     print("Error connecting to the database.")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
